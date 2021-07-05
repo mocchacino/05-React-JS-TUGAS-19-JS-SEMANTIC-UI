@@ -27,6 +27,13 @@
       "jabatan": "Programmer",
       "jenis_kelamin": "Perempuan",
       "tanggal_lahir": "2021-07-04"
+    },
+    {
+      "id": 1625457725823,
+      "nama_karyawan": "Wiladhianty",
+      "jabatan": "IT Staff",
+      "jenis_kelamin": "perempuan",
+      "tanggal_lahir": "2021-07-05"
     }
   ]
 }

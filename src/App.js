@@ -8,8 +8,13 @@ import {
   Table,
   Header,
   Segment,
-  Image
+  Image,
 } from 'semantic-ui-react'
+
+const options = [
+  { key: 'L', text: 'Laki-laki', value: 'laki-laki' },
+  { key: 'P', text: 'Perempuan', value: 'perempuan' },
+]
 
 class App extends Component{
   constructor(props){
@@ -60,13 +65,16 @@ class App extends Component{
     })
   }
 
-  inputChange(e){
+  inputChange(e, {name, value}){
+    this.setState({ value })
     let newdataPost = {...this.state.dataPost}
 
     if(this.state.edit === false){
       newdataPost['id'] = new Date().getTime()
     }
-    newdataPost[e.target.name] = e.target.value
+    // newdataPost[e.target.name] = e.target.value
+    newdataPost[name] = value
+
     this.setState({
       dataPost : newdataPost
     }, 
@@ -116,6 +124,7 @@ class App extends Component{
     
   }
   render(){
+    const {value} = this.state.dataPost.jenis_kelamin
     return(
       <div>
         <Grid>
@@ -152,7 +161,17 @@ class App extends Component{
                     <Form>
                       <Form.Group>
                         <Form.Input fluid label='Nama' type='text' name='nama_karyawan' placeholder='Masukkan Nama Karyawan' value={this.state.dataPost.nama_karyawan} onChange={this.inputChange} width={10}/>
-                        <Form.Input fluid label='Jenis Kelamin' type='text' name='jenis_kelamin' placeholder='Masukkan Jenis Kelamin' value={this.state.dataPost.jenis_kelamin} onChange={this.inputChange} width={6}/>
+                        {/* <Form.Input fluid label='Jenis Kelamin' type='text' name='jenis_kelamin' placeholder='Masukkan Jenis Kelamin' value={this.state.dataPost.jenis_kelamin} onChange={this.inputChange} width={6}/> */}
+                          <Form.Select
+                          fluid
+                          name='jenis_kelamin'
+                          label='Jenis Kelamin'
+                          options={options}
+                          placeholder='Masukkan Jenis Kelamin'
+                          value={value}
+                          onChange={this.inputChange}
+                          width={6}
+                        />
                       </Form.Group>
                       <Form.Group>
                         <Form.Input fluid label='Jabatan' type='text' name='jabatan' placeholder='Masukkan Jabatan' value={this.state.dataPost.jabatan} onChange={this.inputChange} width={10}/>
